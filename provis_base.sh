@@ -31,6 +31,13 @@ LORA_MODELS=(
 ANIMATEDIFF_MODELS=(
     "https://huggingface.co/guoyww/animatediff/resolve/main/mm_sd_v15_v2.ckpt"
     "https://huggingface.co/guoyww/animatediff/resolve/main/mm_sdxl_v10_beta.ckpt"
+    "https://huggingface.co/guoyww/animatediff/resolve/main/v3_sd15_adapter.ckpt"
+    "https://huggingface.co/guoyww/animatediff/resolve/main/v3_sd15_mm.ckpt"
+    "https://huggingface.co/guoyww/animatediff/resolve/main/v3_sd15_sparsectrl_rgb.ckpt"
+    "https://huggingface.co/guoyww/animatediff/resolve/main/v3_sd15_sparsectrl_scribble.ckpt"
+)
+
+ANIMATEDIFF_MOTION_LORAS=(
     "https://huggingface.co/guoyww/animatediff/resolve/main/v2_lora_PanLeft.ckpt"
     "https://huggingface.co/guoyww/animatediff/resolve/main/v2_lora_PanRight.ckpt"
     "https://huggingface.co/guoyww/animatediff/resolve/main/v2_lora_RollingAnticlockwise.ckpt"
@@ -39,11 +46,9 @@ ANIMATEDIFF_MODELS=(
     "https://huggingface.co/guoyww/animatediff/resolve/main/v2_lora_TiltUp.ckpt"
     "https://huggingface.co/guoyww/animatediff/resolve/main/v2_lora_ZoomIn.ckpt"
     "https://huggingface.co/guoyww/animatediff/resolve/main/v2_lora_ZoomOut.ckpt"
-    "https://huggingface.co/guoyww/animatediff/resolve/main/v3_sd15_adapter.ckpt"
-    "https://huggingface.co/guoyww/animatediff/resolve/main/v3_sd15_mm.ckpt"
-    "https://huggingface.co/guoyww/animatediff/resolve/main/v3_sd15_sparsectrl_rgb.ckpt"
-    "https://huggingface.co/guoyww/animatediff/resolve/main/v3_sd15_sparsectrl_scribble.ckpt"
-)
+}
+
+
 
 VAE_MODELS=(
     "https://huggingface.co/stabilityai/sd-vae-ft-ema-original/resolve/main/vae-ft-ema-560000-ema-pruned.safetensors"
@@ -93,8 +98,11 @@ function provisioning_start() {
         "${WORKSPACE}/storage/stable_diffusion/models/lora" \
         "${LORA_MODELS[@]}"
     provisioning_get_models \
-        "${WORKSPACE}/storage/stable_diffusion/models/animatediff" \
+        "${WORKSPACE}/storage/stable_diffusion/models/animatediff_models" \
         "${ANIMATEDIFF_MODELS[@]}"
+    provisioning_get_models \
+        "${WORKSPACE}/storage/stable_diffusion/models/animatediff_motion_lora" \
+        "${ANIMATEDIFF_MOTION_LORAS[@]}" 
     provisioning_get_models \
         "${WORKSPACE}/storage/stable_diffusion/models/controlnet" \
         "${CONTROLNET_MODELS[@]}"
