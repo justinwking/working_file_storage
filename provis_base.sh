@@ -90,7 +90,7 @@ function provisioning_start() {
     DISK_GB_ALLOCATED=$(($DISK_GB_AVAILABLE + $DISK_GB_USED))
     provisioning_print_header
     provisioning_get_nodes
-    special_provisioning_start
+    # special_provisioning_start
     provisioning_get_models \
         "${WORKSPACE}/storage/stable_diffusion/models/ckpt" \
         "${CHECKPOINT_MODELS[@]}"
@@ -114,28 +114,27 @@ function provisioning_start() {
         "${ESRGAN_MODELS[@]}"
     provisioning_print_end
 }
-function special_download() {
-    wget -q --show-progress -e dotbytes="${3:-4M}" -O "$2" "$1"
-}
-function special_provisioning_start() {
-    model_file=${controlnet_dir}/controlnet-union-sdxl-1.0.safetensors
-    model_url=https://huggingface.co/xinsir/controlnet-union-sdxl-1.0/resolve/main/diffusion_pytorch_model_promax.safetensors
 
-    if [[ ! -e ${model_file} ]]; then
-       printf "Downloading controlnet-union-sdxl...\n"
-       special_download ${model_url} ${model_file}
-    fi
+# function special_download() {
+#     wget -q --show-progress -e dotbytes="${3:-4M}" -O "$2" "$1"
+# }
+# function special_provisioning_start() {
+#     model_file=${controlnet_dir}/controlnet-union-sdxl-1.0.safetensors
+#     model_url=https://huggingface.co/xinsir/controlnet-union-sdxl-1.0/resolve/main/diffusion_pytorch_model_promax.safetensors
 
-    model_file=${controlnet_dir}/FLUX.1-dev-ControlNet-Union-Pro.safetensors
-    model_url=https://huggingface.co/Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro/resolve/main/diffusion_pytorch_model.safetensors
+#     if [[ ! -e ${model_file} ]]; then
+#        printf "Downloading controlnet-union-sdxl...\n"
+#        special_download ${model_url} ${model_file}
+#     fi
 
-    if [[ ! -e ${model_file} ]]; then
-       printf "Downloading FLUX.1-dev-ControlNet-Union-Pro...\n"
-       special_download ${model_url} ${model_file}
-    fi
-}
+#     model_file=${controlnet_dir}/FLUX.1-dev-ControlNet-Union-Pro.safetensors
+#     model_url=https://huggingface.co/Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro/resolve/main/diffusion_pytorch_model.safetensors
 
-
+#     if [[ ! -e ${model_file} ]]; then
+#        printf "Downloading FLUX.1-dev-ControlNet-Union-Pro...\n"
+#        special_download ${model_url} ${model_file}
+#     fi
+# }
 
 function provisioning_get_nodes() {
     for repo in "${NODES[@]}"; do
