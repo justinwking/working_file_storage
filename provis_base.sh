@@ -46,7 +46,7 @@ ANIMATEDIFF_MOTION_LORAS=(
     "https://huggingface.co/guoyww/animatediff/resolve/main/v2_lora_TiltUp.ckpt"
     "https://huggingface.co/guoyww/animatediff/resolve/main/v2_lora_ZoomIn.ckpt"
     "https://huggingface.co/guoyww/animatediff/resolve/main/v2_lora_ZoomOut.ckpt"
-}
+)
 
 
 
