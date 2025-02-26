@@ -10,6 +10,8 @@
 # cd hy3dgen/texgen/differentiable_renderer
 # python_embeded\python.exe setup.py build_ext --inplace
 
+# DEFAULT_WORKFLOW="https://..."
+
 NODES=(
     "https://github.com/ltdrdata/ComfyUI-Manager"
     "https://github.com/cubiq/ComfyUI_essentials"
@@ -107,7 +109,8 @@ function provisioning_start() {
     DISK_GB_ALLOCATED=$(($DISK_GB_AVAILABLE + $DISK_GB_USED))
     provisioning_print_header
     provisioning_get_nodes
-    # special_provisioning_start
+    provisioning_get_default_workflow
+    special_provisioning_start
     provisioning_get_models \
         "${WORKSPACE}/storage/stable_diffusion/models/ckpt" \
         "${CHECKPOINT_MODELS[@]}"
@@ -153,6 +156,15 @@ function special_provisioning_start() {
     if [[ ! -e ${model_file} ]]; then
        printf "Downloading FLUX.1-dev-ControlNet-Union-Pro...\n"
        special_download ${model_url} ${model_file}
+    fi
+}
+
+function provisioning_get_default_workflow() {
+    if [[ -n $DEFAULT_WORKFLOW ]]; then
+        workflow_json=$(curl -s "$DEFAULT_WORKFLOW")
+        if [[ -n $workflow_json ]]; then
+            echo "export const defaultGraph = $workflow_json;" > /opt/ComfyUI/web/scripts/defaultGraph.js
+        fi
     fi
 }
 
