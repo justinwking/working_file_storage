@@ -106,6 +106,7 @@ function provisioning_start() {
     DISK_GB_AVAILABLE=$(($(df --output=avail -m "${WORKSPACE}" | tail -n1) / 1000))
     DISK_GB_USED=$(($(df --output=used -m "${WORKSPACE}" | tail -n1) / 1000))
     DISK_GB_ALLOCATED=$(($DISK_GB_AVAILABLE + $DISK_GB_USED))
+    mkdir "${WORKSPACE}/storage/stable_diffusion/models/diffusion_models"
     provisioning_print_header
     provisioning_get_nodes
     provisioning_get_default_workflow
