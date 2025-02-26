@@ -16,13 +16,12 @@ NODES=(
     "https://github.com/ltdrdata/ComfyUI-Manager"
     "https://github.com/cubiq/ComfyUI_essentials"
     "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
+    "https://github.com/kijai/ComfyUI-KJNodes"
+    "https://github.com/kijai/ComfyUI-HunyuanVideoWrapper"
     # "https://github.com/Fannovel16/comfyui_controlnet_aux/"
     # "https://github.com/FizzleDorf/ComfyUI_FizzNodes"
     # "https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved"
-    # "https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet"
-    "https://github.com/kijai/ComfyUI-KJNodes"
-    "https://github.com/kijai/ComfyUI-HunyuanVideoWrapper"
-    
+    # "https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet"    
 )
 
 CHECKPOINT_MODELS=(
@@ -110,7 +109,7 @@ function provisioning_start() {
     provisioning_print_header
     provisioning_get_nodes
     provisioning_get_default_workflow
-    special_provisioning_start
+    # special_provisioning_start
     provisioning_get_models \
         "${WORKSPACE}/storage/stable_diffusion/models/ckpt" \
         "${CHECKPOINT_MODELS[@]}"
@@ -138,35 +137,35 @@ function provisioning_start() {
     provisioning_print_end
 }
 
-function special_download() {
-    wget -q --show-progress -e dotbytes="${3:-4M}" -O "$2" "$1"
-}
-function special_provisioning_start() {
-    model_file=${controlnet_dir}/controlnet-union-sdxl-1.0.safetensors
-    model_url=https://huggingface.co/xinsir/controlnet-union-sdxl-1.0/resolve/main/diffusion_pytorch_model_promax.safetensors
+# function special_download() {
+#     wget -q --show-progress -e dotbytes="${3:-4M}" -O "$2" "$1"
+# }
+# function special_provisioning_start() {
+#     model_file=${controlnet_dir}/controlnet-union-sdxl-1.0.safetensors
+#     model_url=https://huggingface.co/xinsir/controlnet-union-sdxl-1.0/resolve/main/diffusion_pytorch_model_promax.safetensors
 
-    if [[ ! -e ${model_file} ]]; then
-       printf "Downloading controlnet-union-sdxl...\n"
-       special_download ${model_url} ${model_file}
-    fi
+#     if [[ ! -e ${model_file} ]]; then
+#        printf "Downloading controlnet-union-sdxl...\n"
+#        special_download ${model_url} ${model_file}
+#     fi
 
-    model_file=${controlnet_dir}/FLUX.1-dev-ControlNet-Union-Pro.safetensors
-    model_url=https://huggingface.co/Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro/resolve/main/diffusion_pytorch_model.safetensors
+#     model_file=${controlnet_dir}/FLUX.1-dev-ControlNet-Union-Pro.safetensors
+#     model_url=https://huggingface.co/Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro/resolve/main/diffusion_pytorch_model.safetensors
 
-    if [[ ! -e ${model_file} ]]; then
-       printf "Downloading FLUX.1-dev-ControlNet-Union-Pro...\n"
-       special_download ${model_url} ${model_file}
-    fi
-}
+#     if [[ ! -e ${model_file} ]]; then
+#        printf "Downloading FLUX.1-dev-ControlNet-Union-Pro...\n"
+#        special_download ${model_url} ${model_file}
+#     fi
+# }
 
-function provisioning_get_default_workflow() {
-    if [[ -n $DEFAULT_WORKFLOW ]]; then
-        workflow_json=$(curl -s "$DEFAULT_WORKFLOW")
-        if [[ -n $workflow_json ]]; then
-            echo "export const defaultGraph = $workflow_json;" > /opt/ComfyUI/web/scripts/defaultGraph.js
-        fi
-    fi
-}
+# function provisioning_get_default_workflow() {
+#     if [[ -n $DEFAULT_WORKFLOW ]]; then
+#         workflow_json=$(curl -s "$DEFAULT_WORKFLOW")
+#         if [[ -n $workflow_json ]]; then
+#             echo "export const defaultGraph = $workflow_json;" > /opt/ComfyUI/web/scripts/defaultGraph.js
+#         fi
+#     fi
+# }
 
 function provisioning_get_nodes() {
     for repo in "${NODES[@]}"; do
