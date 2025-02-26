@@ -38,10 +38,10 @@ LORA_MODELS=(
 )
 
 DIFFUSION_MODELS=(
-    "https://huggingface.co/Kijai/SkyReels-V1-Hunyuan_comfy/resolve/main/skyreels_hunyuan_i2v_bf16.safetensors"
-    "https://huggingface.co/Kijai/SkyReels-V1-Hunyuan_comfy/resolve/main/skyreels_hunyuan_t2v_bf16.safetensors"
-    # "https://huggingface.co/Kijai/SkyReels-V1-Hunyuan_comfy/resolve/main/skyreels_hunyuan_i2v_fp8_e4m3fn.safetensors"
-    # "https://huggingface.co/Kijai/SkyReels-V1-Hunyuan_comfy/resolve/main/skyreels_hunyuan_t2v_fp8_e4m3fn.safetensors"
+    # "https://huggingface.co/Kijai/SkyReels-V1-Hunyuan_comfy/resolve/main/skyreels_hunyuan_i2v_bf16.safetensors"
+    # "https://huggingface.co/Kijai/SkyReels-V1-Hunyuan_comfy/resolve/main/skyreels_hunyuan_t2v_bf16.safetensors"
+    "https://huggingface.co/Kijai/SkyReels-V1-Hunyuan_comfy/resolve/main/skyreels_hunyuan_i2v_fp8_e4m3fn.safetensors"
+    "https://huggingface.co/Kijai/SkyReels-V1-Hunyuan_comfy/resolve/main/skyreels_hunyuan_t2v_fp8_e4m3fn.safetensors"
     # "https://huggingface.co/Kijai/SkyReels-V1-Hunyuan_comfy/resolve/main/skyreels-hunyuan-I2V-Q5_K_M.gguf"
     # "https://huggingface.co/Kijai/Hunyuan3D-2_safetensors/resolve/main/hunyuan3d-dit-v2-0-fp16.safetensors"
 )
