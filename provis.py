@@ -132,6 +132,7 @@ class Workflow:
             else:
                 print(f'{model.url} is a duplicate' )
         for node in self.nodes:
+            master_dict.setdefault("url",[])
             master_dict.setdefault("custom_nodes",[])
             if node.url not in master_dict['url']:
                 master_dict["custom_nodes"].append(node)
