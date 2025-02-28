@@ -3,7 +3,7 @@ import os, urllib.parse, json, subprocess, sys, shlex, pathlib
 
 
 
-Master_Dictionary ={}
+Master_Dictionary ={'url':[],'commands':[]}
 
 class ModelEntry:
     def __init__(self, folder, url, alt_name=False):
@@ -96,7 +96,6 @@ class NodeEntry:
         os.makedirs(self.filepath, exist_ok=True)
         
         execute_commands = []
-        execute_commands.append(shlex.split(f"cd {self.filepath}"))
         execute_commands.append(shlex.split(f"git clone {self.url} {self.root}"))
         for com in self.commands:
             if isinstance(com,str):
@@ -132,7 +131,6 @@ class Workflow:
             else:
                 print(f'{model.url} is a duplicate' )
         for node in self.nodes:
-            master_dict.setdefault("url",[])
             master_dict.setdefault("custom_nodes",[])
             if node.url not in master_dict['url']:
                 master_dict["custom_nodes"].append(node)
@@ -172,10 +170,10 @@ def provisioning_start(dict=Master_Dictionary):
         print(key)
         if key == "url":
             pass
-        if key == "nodes":
+        elif key == "custom_nodes":
             for node in value:
                 node.get_node()
-        if key == "commands":
+        elif key == "commands":
             for command in value:
                 if isinstance(command,str):
                     subprocess.run(shlex.split(command))
