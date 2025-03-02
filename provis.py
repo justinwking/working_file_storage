@@ -195,6 +195,19 @@ def create_workflow_dictionary():
     animate_diff = Workflow("animate_diff")
     animate_diff.model(ModelEntry("animatediff_models","https://huggingface.co/guoyww/animatediff/resolve/main/mm_sd_v15.ckpt"))
     workflow_dictionary[animate_diff.type] = animate_diff
+
+    # Old SD1.5 Models 
+    legacy = Workflow("legacy")
+    # https://huggingface.co/bitshift/models
+    legacy.node(NodeEntry("https://huggingface.co/WarriorMama777/OrangeMixs/resolve/main/Models/VividOrangeMix/VividOrengeMix_Hard.safetensors")
+    legacy.node(NodeEntry( "https://huggingface.co/Hydragee/EimisAnimeDiffusion-Gape60/resolve/main/EimisAnimeDiffusion_1-0v_0-gape60_1-Add_difference-merged.ckpt")
+    legacy.node(NodeEntry( "https://huggingface.co/rorutop/anythingv3-and-anything-gape-mix/resolve/main/Anything%20and%20AnythingGape.ckpt")
+    # legacy.node(NodeEntry("https://huggingface.co/bitshift/trunk/resolve/main/ColorfulRealm.safetensors")
+    # legacy.node(NodeEntry("https://huggingface.co/bitshift/models/resolve/main/bigbirdv2.safetensors")
+    # legacy.node(NodeEntry("https://huggingface.co/bitshift/models/resolve/main/mockingbirdv1.safetensors")
+    legacy.node(NodeEntry("https://huggingface.co/bitshift/models/resolve/main/mockingbirdv2.safetensors")
+    # ???? Recommended on Discord
+    # legacy.node(NodeEntry("https://huggingface.co/TiinkeR/multi_mix_hardcore/resolve/main/multi_mix_hard.ckpt")
     
     animate_sdxl = Workflow("animate_sdxld")
     animate_sdxl.node(NodeEntry("https://github.com/Fannovel16/comfyui_controlnet_aux/"))
