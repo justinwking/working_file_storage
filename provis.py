@@ -199,6 +199,7 @@ def create_workflow_dictionary():
     # Old SD1.5 Models 
     legacy = Workflow("legacy")
     # https://huggingface.co/bitshift/models
+    legacy.model(ModelEntry("checkpoints","https://huggingface.co/RectalWorm/models/resolve/main/yaya12_v10.safetensors")
     legacy.model(ModelEntry("checkpoints","https://huggingface.co/WarriorMama777/OrangeMixs/resolve/main/Models/VividOrangeMix/VividOrengeMix_Hard.safetensors")
     legacy.model(ModelEntry("checkpoints","https://huggingface.co/Hydragee/EimisAnimeDiffusion-Gape60/resolve/main/EimisAnimeDiffusion_1-0v_0-gape60_1-Add_difference-merged.ckpt")
     legacy.model(ModelEntry("checkpoints","https://huggingface.co/rorutop/anythingv3-and-anything-gape-mix/resolve/main/Anything%20and%20AnythingGape.ckpt")
@@ -208,7 +209,12 @@ def create_workflow_dictionary():
     legacy.model(ModelEntry("checkpoints","https://huggingface.co/bitshift/models/resolve/main/mockingbirdv2.safetensors")
     # ???? Recommended on Discord
     # legacy.model(ModelEntry("checkpoints","https://huggingface.co/TiinkeR/multi_mix_hardcore/resolve/main/multi_mix_hard.ckpt")
-    
+    # legacy.model(ModelEntry("checkpoints","https://huggingface.co/DreamVision/yiyi/resolve/main/yiyi_244.safetensors")
+    # legacy.model(ModelEntry("checkpoints","https://huggingface.co/DreamVision/yoyo/resolve/main/NightBeach.ckpt")             
+    # legacy.model(ModelEntry("checkpoints","https://huggingface.co/DreamVision/zozo/resolve/main/zozo.safetensors")
+    # legacy.model(ModelEntry("checkpoints","https://huggingface.co/DreamVision/yaya/resolve/main/yayaDiffusionV1.ckpt")
+
+                 
     animate_sdxl = Workflow("animate_sdxld")
     animate_sdxl.node(NodeEntry("https://github.com/Fannovel16/comfyui_controlnet_aux/"))
     animate_sdxl.node(NodeEntry("https://github.com/FizzleDorf/ComfyUI_FizzNodes"))
